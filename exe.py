@@ -1,23 +1,13 @@
 from pdf2image import convert_from_path
-from PIL import Image, ImageOps
+from PIL import Image
 
-pdf_path = "26267349 - BRUSH-Model.pdf"
+# Path to the PDF file
+pdf_path = "example.pdf"
 
-# Convert PDF to images
-    images = convert_from_path(pdf_path, dpi=300)
+# Convert PDF to a list of PIL images
+images = convert_from_path(pdf_path)
 
-    # Convert first page to black & white
-    bw_image = images[0].convert('1')
-
-    # Invert colors
-    inverted_image = ImageOps.invert(bw_image.convert('L')).convert('1')
-
-output_path = "output.tiff"
-
-# Save as TIFF with CCITT compression
-    inverted_image.save(
-        output_path,
-        format='TIFF',
-        dpi=(300, 300),
-        compression='tiff_ccitt'
-    )
+# Save all pages as a multi-page TIFF
+tiff_path = "output.tiff"
+images[0].save(tiff_path, save_all=True, append_images=images[1:], compression="tiff_deflate")
+print(f"Saved multi-page TIFF as {tiff_path}")
