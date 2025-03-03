@@ -1,7 +1,7 @@
 from pdf2image import convert_from_path
 from PIL import Image, ImageOps
 
-pdf_path = "input.pdf"
+pdf_path = "26267349 - BRUSH-Model.pdf"
 
 # Convert PDF to images
     images = convert_from_path(pdf_path, dpi=300)
