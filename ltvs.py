@@ -24,7 +24,7 @@ def pdf_to_tiff(input_pdf_path, output_tiff_path, dpi=200):
         processed_images[0].save(
             output_tiff_path,
             format="TIFF",
-            compression="group3",  # CCITT T.4 compression
+            compression="group4",  # CCITT T.4 compression
             save_all=True,
             append_images=processed_images[1:],
             dpi=(dpi, dpi)  # This was the missing closing parenthesis
