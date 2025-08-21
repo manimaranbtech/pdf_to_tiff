@@ -3,7 +3,7 @@ from PIL import Image, ImageOps
 
 def pdf_to_tiff(input_pdf_path, output_tiff_path, dpi=200):
     """
-    Convert PDF to multi-page TIFF with CCITT T.4 (Group 3) compression
+    Convert PDF to multi-page TIFF with CCITT T.6 (Group 4) compression
     
     Args:
         input_pdf_path: Path to input PDF file
@@ -19,12 +19,12 @@ def pdf_to_tiff(input_pdf_path, output_tiff_path, dpi=200):
         bw_img = img.convert('L').convert('1')
         processed_images.append(bw_img)
     
-    # Save as multi-page TIFF with CCITT T.4 compression
+    # Save as multi-page TIFF with CCITT T.6 compression
     if processed_images:
         processed_images[0].save(
             output_tiff_path,
             format="TIFF",
-            compression="group4",  # CCITT T.4 compression
+            compression="group4",  # CCITT T.6 compression
             save_all=True,
             append_images=processed_images[1:],
             dpi=(dpi, dpi)  # This was the missing closing parenthesis
